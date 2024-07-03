@@ -1,0 +1,41 @@
+# Arquivos de compilação gerados
+bin/
+obj/
+
+# Arquivos temporários gerados por Visual Studio
+.vs/
+
+# Arquivos de usuário do Visual Studio
+*.user
+*.suo
+*.cache
+*.vspscc
+*.vssscc
+*.pidb
+*.log
+
+# Arquivos de projeto do Visual Studio
+*.csproj.user
+*.csproj.vspscc
+
+# Arquivos de solução do Visual Studio
+*.sln.docstates
+
+# Pasta de pacotes NuGet
+packages/
+
+# Arquivos de cache de análise de código
+*.suo
+*.cache
+*.noanalyzer
+
+# Logs e arquivos de erros
+*.log
+*.swp
+*.swo
+
+# Dependendo da estrutura do seu projeto, você pode precisar adicionar mais exclusões aqui
+
+# Ignorar diretórios específicos
+[Tt]emp/
+[Oo]bj/

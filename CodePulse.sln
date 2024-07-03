@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodePulse.API", "API\CodePulse.API.csproj", "{3316BD7C-8B27-46FC-B194-A871E8431D70}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{AB9056BC-5107-48D6-92E5-ECD930D026E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{977FFA7D-9D22-4505-A94B-28869211622C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3316BD7C-8B27-46FC-B194-A871E8431D70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3316BD7C-8B27-46FC-B194-A871E8431D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3316BD7C-8B27-46FC-B194-A871E8431D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3316BD7C-8B27-46FC-B194-A871E8431D70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3316BD7C-8B27-46FC-B194-A871E8431D70} = {AB9056BC-5107-48D6-92E5-ECD930D026E1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9282C0CC-E5DB-4087-8090-CE8ACE611B3C}
+	EndGlobalSection
+EndGlobal
