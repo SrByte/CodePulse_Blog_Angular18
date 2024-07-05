@@ -45,7 +45,7 @@ namespace CodePulse.API.Controllers
             return Ok(response);
         }
 
-        // GET: https://localhost:7226/api/Categories?query=html&sortBy=name&sortDirection=desc
+        // GET: https://localhost:7202//api/Categories?query=html&sortBy=name&sortDirection=desc
         [HttpGet]
         public async Task<IActionResult> GetAllCategories(
             [FromQuery] string? query,
@@ -73,7 +73,7 @@ namespace CodePulse.API.Controllers
             return Ok(response);
         }
 
-        // GET: https://localhost:7226/api/categories/{id}
+        // GET: https://localhost:7202//api/categories/{id}
         [HttpGet]
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetCategoryById([FromRoute] Guid id)
@@ -95,7 +95,7 @@ namespace CodePulse.API.Controllers
             return Ok(response);
         }
 
-        // PUT: https://localhost:7226/api/categories/{id}
+        // PUT: https://localhost:7202//api/categories/{id}
         [HttpPut]
         [Route("{id:Guid}")]
         //[Authorize(Roles = "Writer")]
@@ -128,10 +128,10 @@ namespace CodePulse.API.Controllers
         }
 
 
-        // DELETE: https://localhost:7226/api/categories/{id}
+        // DELETE: https://localhost:7202//api/categories/{id}
         [HttpDelete]
         [Route("{id:Guid}")]
-        [Authorize(Roles = "Writer")]
+        //[Authorize(Roles = "Writer")]
         public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
         {
             var category = await categoryRepository.DeleteAsync(id);
@@ -153,7 +153,7 @@ namespace CodePulse.API.Controllers
         }
 
 
-        // GET: https://localhost:7226/api/categories/count
+        // GET: https://localhost:7202//api/categories/count
         [HttpGet]
         [Route("count")]
         //[Authorize(Roles = "Writer")]

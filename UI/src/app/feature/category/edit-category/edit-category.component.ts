@@ -19,6 +19,8 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   id: string | null = null;
   paramsSubscribe?: Subscription;
   editCategorySubscription?: Subscription;
+  deleteCategorySubscription?: Subscription;
+
   category?: Category;
 
   constructor(private route: ActivatedRoute,
@@ -44,7 +46,6 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   onFormSubmit(): void {
 
     const updateCategoryRequest: UpdateCategoryRequest = {
@@ -60,6 +61,19 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
           }
         });
     }
+  }
+
+  onDelete(): void {
+
+    if (this.id) {
+      this.serviceCategory.deleteCategory(this.id)
+        .subscribe({
+          next: (response) => {
+            this.router.navigateByUrl('/admin/categories');
+          }
+        });
+    }
+
   }
 
   ngOnDestroy(): void {
