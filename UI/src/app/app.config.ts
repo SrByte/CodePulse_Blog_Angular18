@@ -3,12 +3,14 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AsyncPipe } from '@angular/common';
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }),  provideRouter(routes),
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(withFetch()),
+    provideRouter(routes),
     {
       provide: AsyncPipe,
       useClass: AsyncPipe
