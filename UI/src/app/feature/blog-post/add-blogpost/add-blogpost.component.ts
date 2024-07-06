@@ -1,20 +1,25 @@
 import { Component } from '@angular/core';
 import { AddBlogPost } from '../models/add-blog-post.model';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BlogPostService } from '../services/blog-post.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-add-blogpost',
   standalone: true,
-  imports: [RouterModule,FormsModule,CommonModule],
+  imports: [RouterModule, FormsModule, CommonModule],
   templateUrl: './add-blogpost.component.html',
   styleUrl: './add-blogpost.component.css'
 })
 export class AddBlogpostComponent {
   model: AddBlogPost;
 
-  constructor() {
+  constructor(private blogPostService: BlogPostService,
+    private router: Router
+
+  ) {
     this.model = {
       title: '',
       shortDescription: '',
@@ -28,8 +33,13 @@ export class AddBlogpostComponent {
     }
   }
 
-  onFormSubmit():void{
-
+  onFormSubmit(): void {
+    this.blogPostService.createBlogPost(this.model)
+      .subscribe({
+        next: (response) => {
+          this.router.navigateByUrl('/admin/blogposts');
+        }
+      })
   }
-
 }
+
