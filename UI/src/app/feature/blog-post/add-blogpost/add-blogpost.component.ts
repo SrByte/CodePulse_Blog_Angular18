@@ -5,11 +5,17 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BlogPostService } from '../services/blog-post.service';
 import { response } from 'express';
+import { MarkdownModule, MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-add-blogpost',
   standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule],
+  imports: [RouterModule,
+            FormsModule,
+            CommonModule,
+            MarkdownModule
+
+  ],
   templateUrl: './add-blogpost.component.html',
   styleUrl: './add-blogpost.component.css'
 })
