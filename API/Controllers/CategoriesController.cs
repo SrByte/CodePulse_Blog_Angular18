@@ -54,7 +54,7 @@ namespace CodePulse.API.Controllers
             [FromQuery] int? pageNumber,
             [FromQuery] int? pageSize)
         {
-            var caterogies = await categoryRepository
+                var caterogies = await categoryRepository
                 .GetAllAsync(query, sortBy, sortDirection, pageNumber, pageSize);
 
             // Map Domain model to DTO
