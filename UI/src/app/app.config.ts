@@ -3,9 +3,10 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { AsyncPipe } from '@angular/common';
 import { MARKED_OPTIONS, provideMarkdown } from 'ngx-markdown';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 
 export const appConfig: ApplicationConfig = {
@@ -17,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     useClass: AsyncPipe
   },
   provideClientHydration(),
-  provideHttpClient(),
+  provideHttpClient(withInterceptors([authInterceptor])),
   provideMarkdown({ loader: HttpClient })
   ]
 };

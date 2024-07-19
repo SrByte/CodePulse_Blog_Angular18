@@ -100,6 +100,16 @@ export class EditBlogpostComponent implements OnInit, OnDestroy {
           next: (response) => {
             this.router.navigateByUrl('/admin/blogposts');
           }
+          ,
+          error: (err) => {
+            // Tratamento do erro
+            console.error('Ocorreu um erro ao atualizar o post:', err);
+            // Aqui você pode adicionar alguma lógica para mostrar uma mensagem de erro para o usuário, se necessário
+          },
+          complete:()=> {
+
+            console.error('funfou!!');
+          }
         })
 
     }
