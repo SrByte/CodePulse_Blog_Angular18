@@ -57,6 +57,10 @@ export class CategoryService {
     return this.http.get<Category>(`${environment.apiBaseUrl}/api/categories/${id}`);
   }
 
+  getCategoryCount(): Observable<number> {
+    return this.http.get<number>(`${environment.apiBaseUrl}/api/categories/count?addAuth=true`);
+  }
+
   updateCategory(id: string, updateCategoryRequest: UpdateCategoryRequest): Observable<Category> {
     return this.http.put<Category>(`${environment.apiBaseUrl}/api/categories/${id}?addAuth=true`,
       updateCategoryRequest);

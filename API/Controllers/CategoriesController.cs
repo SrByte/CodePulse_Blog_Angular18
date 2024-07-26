@@ -76,6 +76,7 @@ namespace CodePulse.API.Controllers
         // GET: https://localhost:7202//api/categories/{id}
         [HttpGet]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> GetCategoryById([FromRoute] Guid id)
         {
             var existingCategory = await categoryRepository.GetById(id);
