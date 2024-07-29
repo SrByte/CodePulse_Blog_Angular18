@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Asp.Versioning;
+using AutoMapper;
 using Azure.Core;
 using CodePulse.API.Data;
 using CodePulse.API.Models.Domain;
@@ -12,8 +13,10 @@ using System.Collections.Generic;
 namespace CodePulse.API.Controllers
 {
     // https://localhost:xxxx/api/categories
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryRepository categoryRepository;
@@ -26,6 +29,7 @@ namespace CodePulse.API.Controllers
         }
 
         [HttpPost]
+        [MapToApiVersion("1.0")] // Define que este método está na versão 1.0    
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryRequestDto request)
         {
@@ -52,7 +56,7 @@ namespace CodePulse.API.Controllers
             return Ok(response);
         }
 
-        // GET: https://localhost:7202//api/Categories?query=html&sortBy=name&sortDirection=desc
+        // GET: https://localhost:7202//api/Categories?query=html&sortBy=name&sortDirection=desc  
         [HttpGet]
         public async Task<IActionResult> GetAllCategories(
             [FromQuery] string? query,
@@ -81,9 +85,38 @@ namespace CodePulse.API.Controllers
 
             return Ok(response);
         }
+        [HttpGet]
+        [MapToApiVersion("2.0")] // Define que este método está na versão 2.0    
+        public async Task<IActionResult> GetAllCategoriesV2(
+           [FromQuery] string? query,
+           [FromQuery] string? sortBy,
+           [FromQuery] string? sortDirection,
+           [FromQuery] int? pageNumber,
+           [FromQuery] int? pageSize)
+        {
+
+            var caterogies = await categoryRepository
+                .GetAllAsync(query, sortBy, sortDirection, pageNumber, pageSize);
+
+            // Map Domain model to DTO
+
+            var response = new List<CategoryDto>();
+            foreach (var category in caterogies)
+            {
+                response.Add(new CategoryDto
+                {
+                    Id = category.Id,
+                    Name = category.Name + "No Automapper - via V2",
+                    UrlHandle = category.UrlHandle
+                });
+            }
+
+            return Ok(response);
+        }
 
         // GET: https://localhost:7202//api/categories/{id}
         [HttpGet]
+        [MapToApiVersion("1.0")] // Define que este método está na versão 1.0    
         [Route("{id:Guid}")]
         //[Authorize(Roles = "Writer")]
         public async Task<IActionResult> GetCategoryById([FromRoute] Guid id)
@@ -109,6 +142,7 @@ namespace CodePulse.API.Controllers
 
         // PUT: https://localhost:7202//api/categories/{id}
         [HttpPut]
+        [MapToApiVersion("1.0")] // Define que este método está na versão 1.0    
         [Route("{id:Guid}")]
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> EditCategory([FromRoute] Guid id, UpdateCategoryRequestDto request)
@@ -148,6 +182,7 @@ namespace CodePulse.API.Controllers
 
         // DELETE: https://localhost:7202//api/categories/{id}
         [HttpDelete]
+        [MapToApiVersion("1.0")] // Define que este método está na versão 1.0    
         [Route("{id:Guid}")]
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
@@ -175,6 +210,7 @@ namespace CodePulse.API.Controllers
 
         // GET: https://localhost:7202//api/categories/count
         [HttpGet]
+        [MapToApiVersion("1.0")] // Define que este método está na versão 1.0    
         [Route("count")]
         [Authorize(Roles = "Writer")]
         public async Task<IActionResult> GetCategoriesTotal()
